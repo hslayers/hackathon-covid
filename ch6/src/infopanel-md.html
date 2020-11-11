@@ -1,0 +1,45 @@
+<md-toolbar class="md-hue-1" ng-show="featureDetails">
+    <div class="md-toolbar-tools">
+        <h2 class="md-flex">{{ featureDetails.name }}</h2>
+
+        <div flex></div>
+
+        <md-button class="md-icon-button" aria-label="Close" ng-click="deselectFeatures()">
+            <md-icon md-menu-origin class="material-icons">close</md-icon>
+        </md-button>
+    </div>
+</md-toolbar>
+
+<md-content ng-show="featureDetails">
+    <div class="img-float">
+        <hs-gallery ng-if="featureDetails.images.length > 0" images="featureDetails.images"></hs-gallery>
+    </div>
+    <div class="content-body">
+        <div class="main-content">
+            <h2><span ng-if="featureDetails.region">{{ featureDetails.region }}, </span>{{ featureDetails.country }}</h2>
+
+            <h3 ng-if="featureDetails.links" class="heading">Links</h3>
+            <p class="content-info" ng-if="featureDetails.links" ng-bind-html="featureDetails.links"></p>
+        </div>
+        <div class="additional-content">
+            <h3 ng-if="featureDetails.Innovator" class="heading">Innovator</h3>
+            <p class="content-info" ng-if="featureDetails.Innovator" ng-bind-html="featureDetails.Innovator"></p>
+
+            <h3 ng-if="featureDetails['target-group']" class="heading">Target group</h3>
+            <p class="content-info" ng-if="featureDetails['target-group']" ng-bind-html="featureDetails['target-group']"></p>
+
+            <h3 ng-if="featureDetails.description" class="heading">Description</h3>
+            <p class="content-info" ng-if="featureDetails.description" ng-bind-html="featureDetails.description"></p>
+
+            <h3 ng-if="featureDetails.results" class="heading">Results</h3>
+            <p class="content-info" ng-if="featureDetails.results" ng-bind-html="featureDetails.results"></p>
+
+            <h3 ng-if="featureDetails.replicability" class="heading">Replicability</h3>
+            <p class="content-info" ng-if="featureDetails.replicability" ng-bind-html="featureDetails.replicability"></p>
+
+            <h3 ng-if="featureDetails.collector" class="heading">Collector</h3>
+            <p class="content-info" ng-if="featureDetails.collector" ng-bind-html="featureDetails.collector"></p>
+            </div>
+        </div>
+    </div>
+</md-content>

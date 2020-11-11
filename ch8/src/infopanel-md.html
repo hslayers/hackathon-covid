@@ -1,0 +1,41 @@
+<md-toolbar class="md-hue-1" ng-show="featureDetails">
+    <div class="md-toolbar-tools">
+        <h2 class="md-flex">{{ featureDetails.name }}</h2>
+
+        <div flex></div>
+
+        <md-button class="md-icon-button" aria-label="Close" ng-click="deselectFeatures()">
+            <md-icon md-menu-origin class="material-icons">close</md-icon>
+        </md-button>
+    </div>
+</md-toolbar>
+
+<md-content ng-show="featureDetails">
+    <div class="img-float">
+        <hs-gallery ng-if="featureDetails.images.length > 0" images="featureDetails.images"></hs-gallery>
+    </div>
+    <div class="content-body">
+        <div class="main-content">
+            <h2><span ng-if="featureDetails.region">{{ featureDetails.region }}, </span>{{ featureDetails.country }}</h2>
+
+            <h3 ng-if="featureDetails.annotation" class="heading">Annotation</h3>
+            <p class="content-info" ng-if="featureDetails.annotation" ng-bind-html="featureDetails.annotation"></p>
+        </div>
+        <div class="additional-content">
+
+            <h3 ng-if="featureDetails.description" class="heading">Description</h3>
+            <p class="content-info" ng-if="featureDetails.description" ng-bind-html="featureDetails.description"></p>
+
+            <h3 ng-if="featureDetails.type" class="heading">Type of Grain storage</h3>
+            <p class="content-info" ng-if="featureDetails.type" ng-bind-html="featureDetails.type"></p>
+
+            <h3 ng-if="featureDetails.partner" class="heading">Collector</h3>
+            <p class="content-info" ng-if="featureDetails.partner" ng-bind-html="featureDetails.partner"></p>
+
+            <h3 ng-if="featureDetails.links" class="heading">Useful links</h3>
+            <p class="content-info" ng-if="featureDetails.links" ng-bind-html="featureDetails.links"></p>
+
+            </div>
+        </div>
+    </div>
+</md-content>

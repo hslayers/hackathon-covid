@@ -1,0 +1,49 @@
+<md-toolbar class="md-hue-1" ng-show="featureDetails">
+    <div class="md-toolbar-tools">
+        <h2 class="md-flex">{{ featureDetails.name }}</h2>
+
+        <div flex></div>
+
+        <md-button class="md-icon-button" aria-label="Close" ng-click="deselectFeatures()">
+            <md-icon md-menu-origin class="material-icons">close</md-icon>
+        </md-button>
+    </div>
+</md-toolbar>
+
+<md-content ng-show="featureDetails">
+    <div class="img-float">
+        <hs-gallery ng-if="featureDetails.images.length > 0" images="featureDetails.images"></hs-gallery>
+    </div>
+    <div class="content-body">
+        <div class="main-content">
+            <h2><span ng-if="featureDetails.region">{{ featureDetails.region }}, </span>{{ featureDetails.country }}</h2>
+
+            <h3 ng-if="featureDetails.address" class="heading">Address</h3>
+            <p class="content-info" ng-if="featureDetails.address" ng-bind-html="featureDetails.address"></p>
+
+            <h3 ng-if="featureDetails.contact" class="heading">Contact</h3>
+            <p class="content-info" ng-if="featureDetails.contact" ng-bind-html="featureDetails.contact"></p>
+        </div>
+        <div class="additional-content">
+            <h3 ng-if="featureDetails.reg_date" class="heading">Date of registration</h3>
+            <p class="content-info" ng-if="featureDetails.reg_date" ng-bind-html="featureDetails.reg_date"></p>
+
+            <h3 ng-if="featureDetails.objectives" class="heading">Enterprise Objectives</h3>
+            <p class="content-info" ng-if="featureDetails.objectives" ng-bind-html="featureDetails.objectives"></p>
+
+            <h3 ng-if="featureDetails.business_activity" class="heading">Business Activities</h3>
+            <p class="content-info" ng-if="featureDetails.business_activity" ng-bind-html="featureDetails.business_activity"></p>
+
+            <h3 ng-if="featureDetails.no_dis_employees" class="heading">Number of Disabled Employees</h3>
+            <p class="content-info" ng-if="featureDetails.no_dis_employees" ng-bind-html="featureDetails.no_dis_employees"></p>
+
+            <h3 ng-if="featureDetails.type_disabilities" class="heading">Type of Disabilities</h3>
+            <p class="content-info" ng-if="featureDetails.type_disabilities" ng-bind-html="featureDetails.type_disabilities"></p>
+
+            <h3 ng-if="featureDetails.no_job_positions" class="heading">Number of Job Positions</h3>
+            <p class="content-info" ng-if="featureDetails.no_job_positions" ng-bind-html="featureDetails.no_job_positions"></p>
+
+            </div>
+        </div>
+    </div>
+</md-content>
