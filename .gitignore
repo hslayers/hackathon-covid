@@ -1,1 +1,4 @@
-node_modulesstatic/
+node_modules
+static/
+index.html
+!**/src/index.html
