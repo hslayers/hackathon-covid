@@ -23,10 +23,50 @@
             ng-mouseleave="unhighlightFeature(feature)"
             ng-class="feature.getProperties().class">
             <img ng-src="{{ endpoint + feature.getProperties().img }}" class="md-card-image" alt="Best Practice thumbnail">
-            <md-card-title>
+            <md-card-title style="flex: 1 1 auto; padding: 16px 0 0 0;">
                 <md-card-title-text>
-                    <span class="md-headline">{{ feature.getProperties().name }}</span>
-                    <span class="md-subhead"><span ng-if="feature.getProperties().region">{{ feature.getProperties().region }}, </span>{{ feature.getProperties().country }}</span>
+                    <span class="md-headline" style="padding-left: 10px; padding-right: 10px;">{{ feature.getProperties().name }}</span>
+                    <div flex></div>
+                    <span class="md-subhead" style="display: flex; padding-left: 10px; line-height: initial;"><span ng-if="feature.getProperties().region">{{ feature.getProperties().region }}, </span>{{ feature.getProperties().country }}
+                        <div flex></div>
+                        <span ng-repeat="tag in feature.getProperties().tags" ng-switch="tag">
+                            <md-icon
+                                ng-switch-when="soft motoric disabilities"
+                                md-font-set="fa"
+                                md-font-icon="fa-allergies"
+                                aria-label="Soft motoric disabilities">
+                                <md-tooltip>Soft motoric disabilities</md-tooltip>
+                            </md-icon>
+                            <md-icon
+                                ng-switch-when="hard motoric disabilities"
+                                md-font-set="fa"
+                                md-font-icon="fa-wheelchair"
+                                aria-label="Hard motoric disabilities">
+                                <md-tooltip>Hard motoric disabilities</md-tooltip>
+                            </md-icon>
+                            <md-icon
+                                ng-switch-when="visually impaired"
+                                md-font-set="fa"
+                                md-font-icon="fa-blind"
+                                aria-label="Visually impaired">
+                                <md-tooltip>Visually impaired</md-tooltip>
+                            </md-icon>
+                            <md-icon
+                                ng-switch-when="hearing impaired"
+                                md-font-set="fa"
+                                md-font-icon="fa-deaf"
+                                aria-label="Hearing impaired">
+                                <md-tooltip>Hearing impaired</md-tooltip>
+                            </md-icon>
+                            <md-icon
+                                ng-switch-when="mentally disabled"
+                                md-font-set="fa"
+                                md-font-icon="fa-brain"
+                                aria-label="Mentally disabled">
+                                <md-tooltip>Mentally disabled</md-tooltip>
+                            </md-icon>
+                        </span>
+                    </span>
                 </md-card-title-text>
             </md-card-title>
             <md-card-content>

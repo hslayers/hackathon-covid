@@ -10,7 +10,7 @@ import 'angular-material';
 import { Vector, Tile } from 'ol/layer';
 import { OSM, XYZ, Vector as VectorSource } from 'ol/source';
 import { GeoJSON } from 'ol/format';
-import { Style, Icon } from 'ol/style';
+import { Style, Icon, Text, Fill, Stroke } from 'ol/style';
 import { transform } from 'ol/proj';
 import View from 'ol/View';
 import {unByKey} from 'ol/Observable';
@@ -55,6 +55,32 @@ module.directive('hs', function(HsMapService, HsCore) {
 });
 
 const caturl = '/php/metadata/csw/index.php';
+
+function styleFunction(feature) {
+	const atr = feature.get('no_job_positions');
+	return new Style({
+		image: new Icon({
+			src: atr > 0
+				? require('./img/job_icon_orange_02_active.png').default
+				: require('./img/job_icon_gray_02_active.png').default,
+			anchor: [0.5, 1],
+			scale: 0.25,
+		})
+	});
+}
+
+function highlightedStyleFunction(feature) {
+	const atr = feature.get('no_job_positions');
+	return new Style({
+		image: new Icon({
+			src: atr > 0
+				? require('./img/job_icon_orange_02.png').default
+				: require('./img/job_icon_gray_02.png').default,
+			anchor: [0.5, 1],
+			scale: 0.25,
+		})
+	});
+}
 
 module.value('HsConfig', {
 	proxyPrefix: '/proxy/',
@@ -106,30 +132,9 @@ module.value('HsConfig', {
 				format: new GeoJSON(),
 				url: 'https://db.atlasbestpractices.com/project-geo-json/6/',
 			}),
-			style: new Style({
-				image: new Icon(({
-					crossOrigin: 'anonymous',
-					src: require('./img/soc_enterprice_icon.png').default,
-					anchor: [0.5, 0.5],
-					// scale: 0.25,
-				}))
-			}),
-			selectedStyle: new Style({
-				image: new Icon(({
-					crossOrigin: 'anonymous',
-					src: require('img/soc_enterprice_icon_active.png').default,
-					anchor: [0.5, 0.5],
-					// scale: 0.25,
-				}))
-			}),
-			highlightedStyle: new Style({
-				image: new Icon(({
-					crossOrigin: 'anonymous',
-					src: require('img/soc_enterprice_icon_active.png').default,
-					anchor: [0.5, 0.5],
-					// scale: 0.25,
-				}))
-			}),
+			style: styleFunction,
+			selectedStyle: highlightedStyleFunction,
+			highlightedStyle: highlightedStyleFunction,
 			featureURI: 'bp_uri',
 			ordering: {
 				primary: 'position',
@@ -137,6 +142,17 @@ module.value('HsConfig', {
 				defaultReverse: ['position', 'bp_id'],
 			},
 			hsFilters: [
+				{
+					title: 'Disability type',
+					valueField: 'tags',
+					type: {
+						type: 'arrayset',
+						parameters: 'or',
+					},
+					selected: undefined,
+					values: [],
+					gatherValues: true
+				},
 				{
 					title: 'Country',
 					valueField: 'SU_A3',
@@ -146,7 +162,16 @@ module.value('HsConfig', {
 					selected: undefined,
 					values: [],
 					gatherValues: true
-				},				
+				},
+				{
+					title: 'Open positions',
+					valueField: 'no_job_positions',
+					type: {
+						type: 'compare',
+						parameters: 'neq',
+					},
+					value: 0,
+				},
 			]
 		})
 	],
@@ -156,7 +181,7 @@ module.value('HsConfig', {
 		center: transform([8.3927408, 46.9205358], 'EPSG:4326', 'EPSG:3857'), //Latitude longitude	to Spherical Mercator
 		zoom: 4,
 		units: 'm',
-		maxZoom: 9,
+		maxZoom: 11,
 		minZoom: 2,
 		constrainResolution: true,
 	}),
