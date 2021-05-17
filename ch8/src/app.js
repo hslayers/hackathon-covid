@@ -107,7 +107,7 @@ module.value('HsConfig', {
 			title: 'Grain storages',
 			source: new VectorSource({
 				format: new GeoJSON(),
-				url: 'https://db.atlasbestpractices.com/project-geo-json/5/',
+				url: 'https://db.atlasbestpractices.com/data/project-geo-json/5/',
 			}),
 			style: new Style({
 				image: new Icon(({

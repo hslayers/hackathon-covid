@@ -134,7 +134,7 @@ module.value('HsConfig', {
 			title: 'Job Opportunities',
 			source: new VectorSource({
 				format: new GeoJSON(),
-				url: 'https://db.atlasbestpractices.com/project-geo-json/6/',
+				url: 'https://db.atlasbestpractices.com/data/project-geo-json/6/',
 			}),
 			style: styleFunction,
 			selectedStyle: highlightedStyleFunction,

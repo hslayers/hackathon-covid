@@ -107,7 +107,7 @@ module.value('HsConfig', {
 			title: 'Covid Cases',
 			source: new VectorSource({
 				format: new GeoJSON(),
-				url: 'https://db.atlasbestpractices.com/project-geo-json/7/',
+				url: 'https://db.atlasbestpractices.com/data/project-geo-json/7/',
 			}),
 			style: new Style({
 				image: new Icon(({
